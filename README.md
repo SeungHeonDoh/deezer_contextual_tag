@@ -9,7 +9,7 @@ This repository recovers the lost data as much as possible through the youtube s
 ### Reference
 - Track-Tag Binary Matrix: https://zenodo.org/record/3648287
 - DataSplit: 
-- 
+- Paper Reference: [Audio-Based Auto-Tagging With Contextual Tags for Music, ICASSP, 2020](https://hal.archives-ouvertes.fr/hal-02481374/document)
 
 ### Process
 
@@ -42,7 +42,7 @@ The audio format is as follows.
 
 `python 3.crawling_from_youtube.py` The third step is to restore the lost preview track.
 
-We use the track name and artist name in the metadata to find the yotubue link, and crawl the music based on this. (I haven't checked all of them for 12.6K. If there are any errors, please leave an issue.) This function performs two tasks. Data for the first task is at this [json file](https://github.com/SeungHeonDoh/deezer_contextual_tag/dataset/id_to_url.json).
+We use the track name and artist name in the metadata to find the yotubue link, and crawl the music based on this. (I haven't checked all of them for 12.6K. If there are any errors, please leave an issue.) This function performs two tasks. Data for the first task is at this [json file](https://github.com/SeungHeonDoh/deezer_contextual_tag/blob/master/dataset/id_to_url.json).
 
 1. track & artist name -> url
 2. url -> audio
