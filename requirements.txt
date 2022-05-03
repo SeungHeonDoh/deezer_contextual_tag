@@ -1,0 +1,12 @@
+librosa >= 0.8
+pytest==6.2.4
+numpy==1.18.5
+deezer-python==5.2.0
+youtube_dl
+pandas
+jupyter
+matplotlib
+tqdm
+wget
+selenium
+bs4
