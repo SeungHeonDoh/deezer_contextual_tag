@@ -42,11 +42,12 @@ The audio format is as follows.
 
 `python 3.crawling_from_youtube.py` The third step is to restore the lost preview track.
 
-We use the track name and artist name in the metadata to find the yotubue link, and crawl the music based on this. (I haven't checked all of them for 12.6K. If there are any errors, please leave an issue.) This function performs two tasks. Data for the first task is at this [json file](https://github.com/SeungHeonDoh/deezer_contextual_tag/blob/master/dataset/id_to_url.json).
+We use the track name and artist name in the metadata to find the yotubue link, and crawl the music based on this. (I haven't checked all of them for 12.6K. If there are any errors, please leave an issue.) `python 3.crawling_from_youtube.py` performs two tasks. 
 
 1. track & artist name -> url
 2. url -> audio
 
+The results(id_to_url) for the first task is at this [json file](https://github.com/SeungHeonDoh/deezer_contextual_tag/blob/master/dataset/id_to_url.json).
 The audio format is as follows.
 
 ```python
