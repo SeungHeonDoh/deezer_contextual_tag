@@ -89,8 +89,11 @@ def make_urls():
         json.dump(id_to_url, io, indent=4)
     np.save(os.path.join("./dataset/error/no_meta_sample.npy"), error)
 
-def crawl_audios():
+def crawl_audios(error_crawl=False):
     id_to_url = json.load(open("./dataset/id_to_url.json", 'r'))
+    if error_crawl:
+        for key in os.listdir("./dataset/audio_crawl"):
+            del id_to_url[key.replace(".mp3","")]
     ids, urls = [], []
     for _id, item in id_to_url.items():
         ids.append(str(_id))
@@ -98,11 +101,10 @@ def crawl_audios():
     with poolcontext(processes=multiprocessing.cpu_count()-5) as pool:
         pool.starmap(audio_crawl, zip(urls, ids))
     print("finish extract: ", len(os.listdir("./dataset/audio_crawl")))
-    print("error sample: ", len(os.listdir("./dataset/error/crawl_error")))
 
 def main():
     # make_urls()
-    crawl_audios()
+    crawl_audios(error_crawl=True)
     
 
 if __name__ == '__main__':

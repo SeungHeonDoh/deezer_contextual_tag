@@ -4,7 +4,7 @@ Modules and scripts for downloading Deezer's Contextual Tag dataset, a dataset o
 
 Unfortunately, 12.6K data cannot be downloaded on deezer API. That's 25% of the total dataset. 
 
-This repository recovers the lost data as much as possible through the youtube source.
+This repository recovers the lost data as much as possible through the youtube source. (12595/12659)
 
 ### Reference
 - Track-Tag Binary Matrix: https://zenodo.org/record/3648287
@@ -51,7 +51,12 @@ The audio format is as follows.
 
 ```python
     100%|█████████████████████████████████████████| 12659/12659 [26:33:43<00:00]
-    save_to_error_ratio : 12650 / 9
+    url error sample : 9
+```    
+
+```python
+    save sample:  12595
+    crawl error sample:  55
 
     {'channels': 2,
     'sample_rate': 44100.0,
