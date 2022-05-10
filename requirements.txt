@@ -10,3 +10,4 @@ tqdm
 wget
 selenium
 bs4
+nltk

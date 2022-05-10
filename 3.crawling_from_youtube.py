@@ -70,8 +70,8 @@ def make_urls():
     you need chromdriver!
     """
     id_to_url, error = {}, []
-    df_anno = pd.read_csv("./dataset/annotation.csv", index_col=0)
-    df_no_preview = df_anno[df_anno['preview'].isna()]
+    df_meta = pd.read_csv("./dataset/metadata.csv", index_col=0)
+    df_no_preview = df_meta[df_meta['preview'].isna()]
     for idx in tqdm(range(len(df_no_preview))):
         item = df_no_preview.iloc[idx]
         query = str(item['title'])  + " " + str(item['artist'])
@@ -91,6 +91,7 @@ def make_urls():
 
 def crawl_audios(error_crawl=False):
     id_to_url = json.load(open("./dataset/id_to_url.json", 'r'))
+    df_meta = pd.read_csv("./dataset/metadata.csv", index_col=0)
     if error_crawl:
         for key in os.listdir("./dataset/audio_crawl"):
             del id_to_url[key.replace(".mp3","")]
@@ -101,10 +102,18 @@ def crawl_audios(error_crawl=False):
     with poolcontext(processes=multiprocessing.cpu_count()-5) as pool:
         pool.starmap(audio_crawl, zip(urls, ids))
     print("finish extract: ", len(os.listdir("./dataset/audio_crawl")))
+    
+    for key,value in id_to_url.items():
+        item = df_meta.loc[int(key)]
+        ground_truth = str(item['title']) + " " + str(item['artist'])
+        predict = value['title']
+        value['query'] = ground_truth
+    with open("./dataset/id_to_url.json", mode="w") as io:
+        json.dump(id_to_url, io, indent=4)
 
 def main():
     # make_urls()
-    crawl_audios(error_crawl=True)
+    crawl_audios(error_crawl=False)
     
 
 if __name__ == '__main__':
